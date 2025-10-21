@@ -1,0 +1,18 @@
+.usuarios-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.usuarios-table th, .usuarios-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.usuarios-table th {
+    background: #1e1e2d;
+    color: white;
+}

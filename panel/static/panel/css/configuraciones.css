@@ -1,0 +1,36 @@
+.config-form {
+    background: var(--color-blanco);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 600px;
+}
+
+.config-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--color-primario);
+}
+
+.config-form input, .config-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--color-gris);
+    border-radius: 6px;
+}
+
+.config-form button {
+    background: var(--color-secundario);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: var(--color-blanco);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.config-form button:hover {
+    background: var(--color-primario);
+}

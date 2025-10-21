@@ -1,0 +1,46 @@
+{% extends 'panel/base.html' %}
+{% load static %}
+{% block title %}Panel Principal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="fw-bold text-dark">Panel General de Control</h2>
+    <p class="text-muted">Bienvenido al sistema centralizado de monitoreo y gestión.</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-4 text-center p-4">
+            <h5 class="text-secondary">Usuarios Activos</h5>
+            <p class="display-5 fw-bold text-primary mb-0">42</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-4 text-center p-4">
+            <h5 class="text-secondary">Logs de Hoy</h5>
+            <p class="display-5 fw-bold text-success mb-0">157</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-4 text-center p-4">
+            <h5 class="text-secondary">Procesos Monitoreados</h5>
+            <p class="display-5 fw-bold text-warning mb-0">8</p>
+        </div>
+    </div>
+</div>
+
+<!-- Sección inferior opcional -->
+<div class="mt-5">
+    <div class="card border-0 shadow-sm p-4 rounded-4">
+        <h4 class="fw-bold text-dark mb-3">Resumen del Sistema</h4>
+        <p class="text-muted">
+            Este panel muestra la actividad general del sistema en tiempo real. 
+            Puedes acceder a las secciones de <strong>Usuarios</strong>, <strong>Monitoreo</strong> y <strong>Configuraciones</strong> desde el menú superior.
+        </p>
+    </div>
+</div>
+{% endblock %}
