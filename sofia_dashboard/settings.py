@@ -1,11 +1,13 @@
 from pathlib import Path
 
+# ---------------------------------
+# RUTAS Y CONFIGURACIÓN BÁSICA
+# ---------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-8#eg(8p!y7n9pidkdvsg&$3g_b&l^j&j-n=3i5vhu#tee)u8he'
-
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # Permite acceso desde cualquier host (útil en desarrollo)
 
 # ---------------------------------
 # APPS INSTALADAS
@@ -18,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Tus apps personalizadas
+    # Apps personalizadas
     'panel',
     'usuarios',
     'monitoreo',
@@ -48,8 +50,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "templates",          # Carpeta global (si la usas)
-            BASE_DIR / "panel" / "templates" # Plantillas dentro de panel
+            BASE_DIR / "templates",
+            BASE_DIR / "panel" / "templates",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -66,14 +68,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'sofia_dashboard.wsgi.application'
 
 # ---------------------------------
-# BASE DE DATOS
+# BASE DE DATOS (POSTGRESQL)
 # ---------------------------------
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sofia_db',
+        'USER': 'sofia_user',
+        'PASSWORD': 'sofia123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+# ---------------------------------
+# MODELO DE USUARIO PERSONALIZADO
+# ---------------------------------
+AUTH_USER_MODEL = 'usuarios.Usuario'  # 👈 Modelo personalizado de usuarios
 
 # ---------------------------------
 # VALIDADORES DE CONTRASEÑA
@@ -97,18 +108,18 @@ USE_TZ = True
 # ARCHIVOS ESTÁTICOS
 # ---------------------------------
 STATIC_URL = '/static/'
-
-# ✅ Ya no es necesario incluir BASE_DIR / "panel" aquí
-# Django detecta automáticamente los archivos estáticos dentro de cada app
-# (porque usas 'django.contrib.staticfiles' y tienes panel/static/)
-# Solo deja la carpeta global si algún día agregas un "static" fuera de las apps
 STATICFILES_DIRS = [
-    BASE_DIR /"panel"/"static",
+    BASE_DIR / "panel" / "static",
 ]
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# ---------------------------------
+# ARCHIVOS MEDIA (para subir imágenes, etc.)
+# ---------------------------------
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # ---------------------------------
 # CONFIGURACIÓN FINAL
 # ---------------------------------
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'      

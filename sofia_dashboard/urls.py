@@ -3,5 +3,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('panel.urls')),  # 👈 panel es la raíz
+
+    # Dashboard principal
+    path('', include('panel.urls')),
+
+    # Rutas de autenticación y gestión de usuarios
+    path('usuarios/', include('usuarios.urls')),
 ]
