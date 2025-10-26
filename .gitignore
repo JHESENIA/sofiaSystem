@@ -1,0 +1,46 @@
+# --- Archivos y directorios de Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# --- Virtual env ---
+venv/
+env/
+.venv/
+
+# --- Archivos de entorno ---
+.env
+*.env
+
+# --- Archivos temporales ---
+*.bak
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Archivos y carpetas de compilación ---
+build/
+dist/
+*.egg-info/
+
+# --- Archivos de Django ---
+staticfiles/
+media/
+db.sqlite3
+
+# --- Archivos de Node/Vite ---
+node_modules/
+package-lock.json
+.vite/
+dist/
+coverage/
+
+# --- Configuración local ---
+.vscode/
+.idea/
