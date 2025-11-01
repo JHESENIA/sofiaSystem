@@ -1,6 +1,9 @@
-// src/App.tsx
 import { useState } from "react";
-import { LanguageProvider, useLanguage } from "./lib/LanguageContext";
+import {
+  LanguageProvider,
+  useLanguage,
+} from "./lib/LanguageContext";
+import { AuthProvider, useAuth } from "./lib/AuthContext";
 import { DashboardLayout } from "./components/DashboardLayout";
 import { OverviewPage } from "./components/OverviewPage";
 import { AgentConfigPage } from "./components/AgentConfigPage";
@@ -8,11 +11,24 @@ import { ConversationsPage } from "./components/ConversationsPage";
 import { AnalyticsPage } from "./components/AnalyticsPage";
 import { ApiKeysPage } from "./components/ApiKeysPage";
 import { TagsPage } from "./components/TagsPage";
-import UsuariosPage from "./components/pages/Usuarios"; // importa la página
+import { SessionsPage } from "./components/SessionsPage";
+import { LoginPage } from "./components/LoginPage";
+import { RegisterPage } from "./components/RegisterPage";
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState("overview");
+  const [authView, setAuthView] = useState<"login" | "register">("login");
   const { t } = useLanguage();
+  const { isAuthenticated } = useAuth();
+
+  // If not authenticated, show login/register
+  if (!isAuthenticated) {
+    if (authView === "login") {
+      return <LoginPage onSwitchToRegister={() => setAuthView("register")} />;
+    } else {
+      return <RegisterPage onSwitchToLogin={() => setAuthView("login")} />;
+    }
+  }
 
   const renderPage = () => {
     switch (currentPage) {
@@ -28,29 +44,18 @@ function AppContent() {
         return <ApiKeysPage />;
       case "tags":
         return <TagsPage />;
-      case "usuarios":
-        return <UsuariosPage />;
-      case "settings":
-        return (
-          <div className="text-center py-12">
-            <h2 className="text-2xl text-foreground">{t.settings.title}</h2>
-            <p className="text-muted-foreground mt-2">{t.settings.subtitle}</p>
-          </div>
-        );
-      case "docs":
-        return (
-          <div className="text-center py-12">
-            <h2 className="text-2xl text-foreground">{t.documentation.title}</h2>
-            <p className="text-muted-foreground mt-2">{t.documentation.subtitle}</p>
-          </div>
-        );
+      case "sessions":
+        return <SessionsPage />;
       default:
         return <OverviewPage />;
     }
   };
 
   return (
-    <DashboardLayout currentPage={currentPage} onNavigate={setCurrentPage}>
+    <DashboardLayout
+      currentPage={currentPage}
+      onNavigate={setCurrentPage}
+    >
       {renderPage()}
     </DashboardLayout>
   );
@@ -58,8 +63,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <AuthProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </AuthProvider>
   );
 }

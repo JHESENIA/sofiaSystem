@@ -1,18 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+from django.http import HttpResponse
 
 def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    return HttpResponse("✅ Página de inicio de sesión funcionando correctamente")
 
-        user = authenticate(request, username=username, password=password)
+def usuarios_home(request):
+    return HttpResponse("🏠 Bienvenido al panel de usuarios")
 
-        if user is not None:
-            login(request, user)  # Inicia sesión
-            return redirect('usuarios_home')  # Redirige a tu home
-        else:
-            messages.error(request, 'Usuario o contraseña incorrectos')
-
-    return render(request, 'usuarios/login.html')
+def logout_view(request):
+    return HttpResponse("👋 Has cerrado sesión correctamente")

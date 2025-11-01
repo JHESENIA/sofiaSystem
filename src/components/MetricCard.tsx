@@ -18,7 +18,7 @@ export function MetricCard({ title, value, change, icon: Icon, trend = "neutral"
       : "text-muted-foreground";
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <p className="text-sm text-muted-foreground">{title}</p>
@@ -29,8 +29,8 @@ export function MetricCard({ title, value, change, icon: Icon, trend = "neutral"
             </p>
           )}
         </div>
-        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-          <Icon className="w-6 h-6 text-primary" />
+        <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(10, 25, 47, 0.1) 100%)' }}>
+          <Icon className="w-6 h-6 text-accent" />
         </div>
       </div>
     </Card>

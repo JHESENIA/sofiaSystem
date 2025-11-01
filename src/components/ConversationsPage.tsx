@@ -130,7 +130,7 @@ export function ConversationsPage() {
             <h2 className="text-2xl text-foreground">{t.conversations.title}</h2>
             <p className="text-muted-foreground mt-1">{t.conversations.subtitle}</p>
           </div>
-          <Button variant="outline" className="gap-2">
+          <Button variant="wine" className="gap-2">
             <Download className="w-4 h-4" />
             {t.conversations.exportData}
           </Button>

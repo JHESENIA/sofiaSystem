@@ -1,4 +1,4 @@
-import { MessageSquare, Users, Clock, TrendingUp, Activity } from "lucide-react";
+import { MessageSquare, Users, Clock, TrendingUp, Activity, Bot, Brain, Sparkles } from "lucide-react";
 import { MetricCard } from "./MetricCard";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -94,6 +94,33 @@ export function OverviewPage() {
 
   return (
     <div className="space-y-6">
+      {/* Sofía AI Status Banner */}
+      <Card className="p-6" style={{ background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.05) 0%, rgba(10, 25, 47, 0.05) 100%)' }}>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #800020 0%, #0A192F 100%)' }}>
+              <Brain className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h3 className="text-lg text-foreground mb-1">Sofía Control System</h3>
+              <p className="text-sm text-muted-foreground">Sistema de IA Autónomo Activo</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <div className="flex items-center gap-2 justify-end mb-1">
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#800020' }} />
+                <span className="text-sm" style={{ color: '#800020' }}>Operando</span>
+              </div>
+              <p className="text-xs text-muted-foreground">Gestionando 47 procesos activos</p>
+            </div>
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(128, 0, 32, 0.1)' }}>
+              <Sparkles className="w-6 h-6" style={{ color: '#800020' }} />
+            </div>
+          </div>
+        </div>
+      </Card>
+
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric) => (
@@ -113,24 +140,25 @@ export function OverviewPage() {
             <AreaChart data={conversationData}>
               <defs>
                 <linearGradient id="colorConversations" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#800020" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#800020" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.3} />
-              <XAxis dataKey="date" stroke="#9ca3af" fontSize={12} />
-              <YAxis stroke="#9ca3af" fontSize={12} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" opacity={0.5} />
+              <XAxis dataKey="date" stroke="#718096" fontSize={12} />
+              <YAxis stroke="#718096" fontSize={12} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "white",
-                  border: "1px solid #e5e7eb",
+                  border: "1px solid #E2E8F0",
                   borderRadius: "8px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                 }}
               />
               <Area
                 type="monotone"
                 dataKey="conversations"
-                stroke="#8b5cf6"
+                stroke="#800020"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorConversations)"
@@ -204,6 +232,52 @@ export function OverviewPage() {
               <span className="text-sm text-foreground">2h</span>
             </div>
           </div>
+        </div>
+      </Card>
+
+      {/* Quick Actions */}
+      <Card className="p-6">
+        <h3 className="text-foreground mb-4">Acciones Rápidas</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <button 
+            className="p-4 rounded-xl border border-border hover:shadow-lg transition-all group"
+            style={{ background: 'linear-gradient(135deg, rgba(10, 25, 47, 0.05) 0%, rgba(10, 25, 47, 0.02) 100%)' }}
+          >
+            <div className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #0A192F 0%, #1a3a5c 100%)' }}>
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <p className="text-sm text-foreground">Nueva Conversación</p>
+          </button>
+          
+          <button 
+            className="p-4 rounded-xl border border-border hover:shadow-lg transition-all group"
+            style={{ background: 'linear-gradient(135deg, rgba(128, 0, 32, 0.05) 0%, rgba(128, 0, 32, 0.02) 100%)' }}
+          >
+            <div className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #800020 0%, #a00030 100%)' }}>
+              <TrendingUp className="w-6 h-6 text-white" />
+            </div>
+            <p className="text-sm text-foreground">Ver Analytics</p>
+          </button>
+          
+          <button 
+            className="p-4 rounded-xl border border-border hover:shadow-lg transition-all group"
+            style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%)' }}
+          >
+            <div className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)' }}>
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+            <p className="text-sm text-foreground">Estado Sistema</p>
+          </button>
+          
+          <button 
+            className="p-4 rounded-xl border border-border hover:shadow-lg transition-all group"
+            style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%)' }}
+          >
+            <div className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110" style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}>
+              <Bot className="w-6 h-6 text-white" />
+            </div>
+            <p className="text-sm text-foreground">Configurar IA</p>
+          </button>
         </div>
       </Card>
     </div>

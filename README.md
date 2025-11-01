@@ -1,11 +1,14 @@
+# SofiaSystem
 
-  # Sofía Control System Dashboard
+Versión personalizada del proyecto Sofía desarrollada por Jhesenia.
+Incluye módulos de:
+- Monitoreo
+- Empleados
+- Panel de control
+- Sistema de usuarios
 
-  This is a code bundle for Sofía Control System Dashboard. The original project is available at https://www.figma.com/design/NmhvotBAiD5z6mx5zxko5z/Sof%C3%ADa-Control-System-Dashboard.
-
-  ## Running the code
-
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
-  
+## Tecnologías
+- Django
+- Python
+- HTML, CSS, JavaScript
+- Vite

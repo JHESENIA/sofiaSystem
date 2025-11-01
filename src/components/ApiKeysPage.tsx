@@ -1,0 +1,1 @@
+const STRIPE_KEY = process.env.STRIPE_KEY || "YOUR_STRIPE_KEY_HERE";
